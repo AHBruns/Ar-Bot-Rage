@@ -1,6 +1,8 @@
 import WebCalls.phone as phone
 import Algorithms.pather as pather
+import Algorithms.evaluations as eval
 import time
+import sys
 
 # start time check (used for later references)
 #    - only checked once
@@ -9,8 +11,8 @@ print('\tstart time: ' + str(start_time))
 print('')
 
 completed_event_loop_count = 0
-# while True:  # production loop
-while completed_event_loop_count == 0:  # single loop for testing
+while True:  # production loop
+# while completed_event_loop_count == 0:  # single loop for testing
     # base currencies check
     #    - first time through
     #    - every 150 seconds max
@@ -31,7 +33,35 @@ while completed_event_loop_count == 0:  # single loop for testing
         print('')
     # get paths
     paths = pather.make_paths(markets,base_currencies)
-
+    # eval BSS paths
+    print('\tevaluating buy -> sell -> sell paths for profitability')
+    print('\ttime: ' + str(time.time()))
+    print('')
+    for bss_path in paths[0]:
+        eval_results = eval.bss_light_eval(bss_path)
+        if eval_results[0] > 0:
+            print('Found possible trade! ' + str(bss_path))
+            print('-> ' + str(eval_results[0] * 100) + '%')
+            print('')
+            print('\tevaluating order books to determine if path is actionable')
+            print('\ttime: ' + str(time.time()))
+            print('')
+            book1 = phone.get_ask_book([bss_path[0][0]])
+            book2 = phone.get_bid_book([bss_path[1][0]])
+            book3 = phone.get_bid_book([bss_path[2][0]])
+            deep_eval_results = eval.bss_deep_eval(bss_path, book1, book2, book3)
+            while deep_eval_results[0][0] > 0:
+                print('Trade is actionable! ' + str(bss_path))
+                print('-> ' + str(deep_eval_results[0][0] * 100) + '%')
+                print('-> ' + str(deep_eval_results[1][0]))
+                print('-> ' + str(deep_eval_results[1][1]))
+                print('-> ' + str(deep_eval_results[1][2]))
+                print('-> ' + str(deep_eval_results[2]))
+                print('')
+                book1 = phone.get_ask_book([bss_path[0][0]])
+                book2 = phone.get_bid_book([bss_path[1][0]])
+                book3 = phone.get_bid_book([bss_path[2][0]])
+                deep_eval_results = eval.bss_deep_eval(bss_path, book1, book2, book3)
 
     completed_event_loop_count += 1
 

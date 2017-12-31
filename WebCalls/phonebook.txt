@@ -15,7 +15,7 @@ price::FLOAT
 quantity::FLOAT
 ###RESULTS
 sell-order-book::get-order-book::result,SellOrders,iterate,[Price;Quantity]
-buy-order-book::get-order-book::result,BuyOrders,iterate,[price;Quantity]
+buy-order-book::get-order-book::result,BuyOrders,iterate,[Price;Quantity]
 all-market-prices::get-market-summaries::result,iterate,[MarketID;BidPrice;AskPrice]
 all-market-ids::get-markets::result,iterate,[MarketID;MarketAssetCode;BaseCurrencyCode;Active]
 all-currency-ids::get-currencies::result,iterate,[CurrencyID;TickerCode]
