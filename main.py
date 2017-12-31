@@ -1,4 +1,5 @@
 import WebCalls.phone as phone
+import Algorithms.pather as pather
 import time
 
 # start time check (used for later references)
@@ -8,7 +9,8 @@ print('\tstart time: ' + str(start_time))
 print('')
 
 completed_event_loop_count = 0
-while True:
+# while True:  # production loop
+while completed_event_loop_count == 0:  # single loop for testing
     # base currencies check
     #    - first time through
     #    - every 150 seconds max
@@ -27,6 +29,9 @@ while True:
         print('\tmarkets checked for new prices, activity, and new additions')
         print('\ttime: ' + str(last_check_time_markets))
         print('')
+    # get paths
+    paths = pather.make_paths(markets,base_currencies)
+
 
     completed_event_loop_count += 1
 
