@@ -32,7 +32,7 @@ while True:  # production loop
         print('\ttime: ' + str(last_check_time_markets))
         print('')
     # get paths
-    paths = pather.make_paths(markets,base_currencies)
+    paths = pather.make_paths(markets, base_currencies)
     # eval BSS paths
     print('\tevaluating buy -> sell -> sell paths for profitability')
     print('\ttime: ' + str(time.time()))
@@ -62,6 +62,31 @@ while True:  # production loop
                 book2 = phone.get_bid_book([bss_path[1][0]])
                 book3 = phone.get_bid_book([bss_path[2][0]])
                 deep_eval_results = eval.bss_deep_eval(bss_path, book1, book2, book3)
+    # eval BBS paths
+    print('\tevaluating buy -> buy -> sell paths for profitability')
+    print('\ttime: ' + str(time.time()))
+    print('')
+    for bbs_path in paths[1]:
+        eval_results = eval.bbs_light_eval(bbs_path)
+        if eval_results[0] > -.1:
+            print('Found possible trade! ' + str(bbs_path))
+            print('-> ' + str(eval_results[0] * 100) + '%')
+            print('')
+            book1 = phone.get_ask_book([bbs_path[0][0]])
+            book2 = phone.get_ask_book([bbs_path[1][0]])
+            book3 = phone.get_bid_book([bbs_path[2][0]])
+            deep_eval_results = eval.bbs_deep_eval(bbs_path, book1, book2, book3)
+            while deep_eval_results[0][0] > 0:
+                print('Trade is actionable! ' + str(bbs_path))
+                print('-> ' + str(deep_eval_results[0][0] * 100) + '%')
+                print('-> ' + str(deep_eval_results[1][0]))
+                print('-> ' + str(deep_eval_results[1][1]))
+                print('-> ' + str(deep_eval_results[1][2]))
+                print('')
+                book1 = phone.get_ask_book([bbs_path[0][0]])
+                book2 = phone.get_ask_book([bbs_path[1][0]])
+                book3 = phone.get_bid_book([bbs_path[2][0]])
+                deep_eval_results = eval.bbs_deep_eval(bbs_path, book1, book2, book3)
 
     completed_event_loop_count += 1
 

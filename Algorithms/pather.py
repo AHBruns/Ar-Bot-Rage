@@ -75,19 +75,20 @@ def sort_paths(paths):
             bss_paths.append(path)
         else:  # Buy -> Buy -> Sell
             bbs_paths.append(path)
-    return [bss_paths,bbs_paths]
+    return [bss_paths, bbs_paths]
 
 
 def check_for_empties(paths):
     non_empty_bss_paths = []
     non_empty_bbs_paths = []
     for bss_path in paths[0]:
-        if not (bss_path[0][5] =='0.00000000') and not (bss_path[1][4] == '0.00000000') and not (bss_path[2][4] == '0.00000000'):
+        if not (bss_path[0][5] == '0.00000000') and not (bss_path[1][4] == '0.00000000') and not (bss_path[2][4] == '0.00000000'):
             non_empty_bss_paths.append(bss_path)
     for bbs_path in paths[1]:
-        if not (bbs_path[0][5] =='0.00000000') and not (bbs_path[1][5] == '0.00000000') and not (bbs_path[2][4] == '0.00000000'):
-            non_empty_bbs_paths.append(bss_path)
+        if not (bbs_path[0][5] == '0.00000000') and not (bbs_path[1][5] == '0.00000000') and not (bbs_path[2][4] == '0.00000000'):
+            non_empty_bbs_paths.append(bbs_path)
     return [non_empty_bss_paths, non_empty_bbs_paths]
+
 
 def make_paths(markets, base_currencies):
     grouped_markets = group_markets(markets, base_currencies)
