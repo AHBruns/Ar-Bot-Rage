@@ -89,6 +89,5 @@ while True:  # production loop
                 book2 = phone.get_ask_book([bbs_path[1][0]])
                 book3 = phone.get_bid_book([bbs_path[2][0]])
                 deep_eval_results = eval.bbs_deep_eval(bbs_path, book1, book2, book3)
-
     completed_event_loop_count += 1
 
