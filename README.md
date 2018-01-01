@@ -1,13 +1,10 @@
 # What Is Ar-Bot-Rage?
---
 Ar-Bot-Rage is a punny arbitrage script written entirely in Python 3. It is designed to watch and execute trades on cryptocurrency exchange CoinExchange.io, but it can easily be addapted to work on other exchanges that offer market data REST APIs.
 
 # Dependencies
---
 Ar-Bot-Rage tries to use as few third-party modules as possible. It's api calls use python's included requests module and it's timing systems use python's included time module. Finally, it also uses python's sys module for some file linking and exiting sequences. Note: because python's sys module is inherently system specific I can't guarantee this script will run on any systems other than OSX though I highly doubt you'll have any problems on other OSs.
 
 # Roadmap
---
 Ar-Bot-Rage's core codebase is complete. It can form 3-market arbitrage paths and evaluate them both as buy -> sell -> sell (forwards) and buy -> buy -> sell (backwards). Additionally, it has a fairly easy to understand command line interface.
 
 Down the road I hope to upgrade Ar-Bot-Rage's capabilities in a few ways.
@@ -19,7 +16,6 @@ Down the road I hope to upgrade Ar-Bot-Rage's capabilities in a few ways.
 3 - I plan to add a GUI for Ar-Bot-Rage at some point. This is the least important of the changes I'm planning, but it is on the list. The GUI would be simple and clean. No advanced options or endless settings pages.
 
 # Running the script
---
 Running Ar-Bot-Rage is easy.
 1 - Install python 3
 2 - Press the green download button in the upper right-hand corner of the screen
