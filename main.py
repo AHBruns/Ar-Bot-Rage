@@ -39,7 +39,7 @@ while True:  # production loop
     print('')
     for bss_path in paths[0]:
         eval_results = eval.bss_light_eval(bss_path)
-        if eval_results[0] > 0:
+        if eval_results[0] > 0.0025:
             print('Found possible trade! ' + str(bss_path))
             print('-> ' + str(eval_results[0] * 100) + '%')
             print('')
@@ -50,13 +50,12 @@ while True:  # production loop
             book2 = phone.get_bid_book([bss_path[1][0]])
             book3 = phone.get_bid_book([bss_path[2][0]])
             deep_eval_results = eval.bss_deep_eval(bss_path, book1, book2, book3)
-            while deep_eval_results[0][0] > 0:
+            while deep_eval_results[0][0] > 0.0025:
                 print('Trade is actionable! ' + str(bss_path))
                 print('-> ' + str(deep_eval_results[0][0] * 100) + '%')
                 print('-> ' + str(deep_eval_results[1][0]))
                 print('-> ' + str(deep_eval_results[1][1]))
                 print('-> ' + str(deep_eval_results[1][2]))
-                print('-> ' + str(deep_eval_results[2]))
                 print('')
                 book1 = phone.get_ask_book([bss_path[0][0]])
                 book2 = phone.get_bid_book([bss_path[1][0]])
@@ -68,15 +67,18 @@ while True:  # production loop
     print('')
     for bbs_path in paths[1]:
         eval_results = eval.bbs_light_eval(bbs_path)
-        if eval_results[0] > -.1:
+        if eval_results[0] > 0.0025:
             print('Found possible trade! ' + str(bbs_path))
             print('-> ' + str(eval_results[0] * 100) + '%')
+            print('')
+            print('\tevaluating order books to determine if path is actionable')
+            print('\ttime: ' + str(time.time()))
             print('')
             book1 = phone.get_ask_book([bbs_path[0][0]])
             book2 = phone.get_ask_book([bbs_path[1][0]])
             book3 = phone.get_bid_book([bbs_path[2][0]])
             deep_eval_results = eval.bbs_deep_eval(bbs_path, book1, book2, book3)
-            while deep_eval_results[0][0] > 0:
+            while deep_eval_results[0][0] > 0.0025:
                 print('Trade is actionable! ' + str(bbs_path))
                 print('-> ' + str(deep_eval_results[0][0] * 100) + '%')
                 print('-> ' + str(deep_eval_results[1][0]))
