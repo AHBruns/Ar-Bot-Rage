@@ -17,8 +17,13 @@ Down the road I hope to upgrade Ar-Bot-Rage's capabilities in a few ways.
 
 # Running the script
 Running Ar-Bot-Rage is easy.
+
 1 - Install python 3
+
 2 - Press the green download button in the upper right-hand corner of the screen
+
 3 - Find the zip on your machine and unpack it
+
 4 - Find main.py in the unpacked file
+
 5 - run main.py using python 3. For most this can be done in the command line with "python3 main.py" assuming your working directory is the same as the main.py directory.
