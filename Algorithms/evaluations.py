@@ -35,7 +35,7 @@ def weighted_avg(to_be_weighted):
 
 
 def book_weighting(base_currency_code, book, min_tot_quantity):
-    min_orders = {'BTC': 0.0001, 'DOGE': 0.0001, 'ETH': 0.0001, 'ETC': 0.0001, 'LTC': 0.0001}
+    min_orders = {'BTC': 0.001, 'DOGE': 0.001, 'ETH': 0.001, 'ETC': 0.001, 'LTC': 0.001}
     active_orders = []
     min_tot_base_value = min_orders[base_currency_code]
     cur_tot_base_value = 0
@@ -58,7 +58,7 @@ def book_weighting(base_currency_code, book, min_tot_quantity):
             active_orders.append([order_price, order_base_value])
             # print('last active order! ' + str([order_price, order_base_value]))
             break
-        if ((cur_tot_quantity + order_quantity) >= min_tot_quantity):
+        if (cur_tot_quantity + order_quantity) >= min_tot_quantity:
             quantity_first_flag =  True
         cur_tot_base_value += order_base_value
         cur_tot_quantity += order_quantity
@@ -70,8 +70,8 @@ def book_weighting(base_currency_code, book, min_tot_quantity):
 
 
 def variable_min_base_value_weighting(base_currency_code, book, min_tot_base_value):
-    min_orders = {'BTC': 0.0001, 'DOGE': 0.0001, 'ETH': 0.0001, 'ETC': 0.0001, 'LTC': 0.0001}
-    if min_tot_base_value < 0.0001:
+    min_orders = {'BTC': 0.001, 'DOGE': 0.001, 'ETH': 0.001, 'ETC': 0.001, 'LTC': 0.001}
+    if min_tot_base_value < 0.001:
         min_tot_base_value = min_orders[base_currency_code]
     active_orders = []
     cur_tot_base_value = 0

@@ -1,0 +1,9 @@
+start-pos::960::600
+toolbar-open-pos::960::1199
+chrome-icon-pos::380::1171
+chrome-icon-new-window-option-pos::427::994
+chrome-left-new-window-grab-pos::451::57
+chrome-middle-new-window-grab-pos::1084::60
+chrome-window-1-url-bar::276::77
+chrome-window-2-url-bar::930::77
+chrome-window-3-url-bar::1573::77

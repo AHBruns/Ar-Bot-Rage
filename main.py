@@ -1,6 +1,7 @@
 import WebCalls.phone as phone
 import Algorithms.pather as pather
 import Algorithms.evaluations as eval
+import HandOfGod.hand as hand
 import time
 import sys
 
@@ -9,6 +10,10 @@ import sys
 start_time = time.time()
 print('\tstart time: ' + str(start_time))
 print('')
+print("\tsetting up trade scene. please don't touch anything. please.")
+print("\ttime: " + str(time.time()))
+print('')
+hand.setup_scene_1()
 
 completed_event_loop_count = 0
 while True:  # production loop
@@ -50,6 +55,7 @@ while True:  # production loop
             book2 = phone.get_bid_book([bss_path[1][0]])
             book3 = phone.get_bid_book([bss_path[2][0]])
             deep_eval_results = eval.bss_deep_eval(bss_path, book1, book2, book3)
+            first_time = True
             while deep_eval_results[0][0] > 0.01:
                 print('Trade is actionable! ' + str(bss_path))
                 print('-> ' + str(deep_eval_results[0][0] * 100) + '%')
@@ -57,6 +63,13 @@ while True:  # production loop
                 print('-> https://www.coinexchange.io/market/' + bss_path[1][1] + '/' + bss_path[1][2] + ' ' + str(deep_eval_results[1][1]))
                 print('-> https://www.coinexchange.io/market/' + bss_path[2][1] + '/' + bss_path[2][2] + ' ' + str(deep_eval_results[1][2]))
                 print('')
+                if first_time:
+                    choice = input('Should I setup the trades? "y" or "n" ')
+                    if choice == "y":
+                        hand.url_1_input("https://www.coinexchange.io/market/" + bss_path[0][1] + '/' + bss_path[0][2])
+                        hand.url_2_input("https://www.coinexchange.io/market/" + bss_path[1][1] + '/' + bss_path[1][2])
+                        hand.url_3_input("https://www.coinexchange.io/market/" + bss_path[2][1] + '/' + bss_path[2][2])
+                first_time = False
                 book1 = phone.get_ask_book([bss_path[0][0]])
                 book2 = phone.get_bid_book([bss_path[1][0]])
                 book3 = phone.get_bid_book([bss_path[2][0]])
@@ -78,6 +91,7 @@ while True:  # production loop
             book2 = phone.get_ask_book([bbs_path[1][0]])
             book3 = phone.get_bid_book([bbs_path[2][0]])
             deep_eval_results = eval.bbs_deep_eval(bbs_path, book1, book2, book3)
+            first_time = True
             while deep_eval_results[0][0] > 0.01:
                 print('Trade is actionable! ' + str(bbs_path))
                 print('-> ' + str(deep_eval_results[0][0] * 100) + '%')
@@ -85,6 +99,13 @@ while True:  # production loop
                 print('-> https://www.coinexchange.io/market/' + bbs_path[1][1] + '/' + bbs_path[1][2] + ' ' + str(deep_eval_results[1][1]))
                 print('-> https://www.coinexchange.io/market/' + bbs_path[2][1] + '/' + bbs_path[2][2] + ' ' + str(deep_eval_results[1][2]))
                 print('')
+                if first_time:
+                    choice = input('Should I setup the trades? "y" or "n" ')
+                    if choice == "y":
+                        hand.url_1_input("https://www.coinexchange.io/market/" + bbs_path[0][1] + '/' + bbs_path[0][2])
+                        hand.url_2_input("https://www.coinexchange.io/market/" + bbs_path[1][1] + '/' + bbs_path[1][2])
+                        hand.url_3_input("https://www.coinexchange.io/market/" + bbs_path[2][1] + '/' + bbs_path[2][2])
+                first_time = False
                 book1 = phone.get_ask_book([bbs_path[0][0]])
                 book2 = phone.get_ask_book([bbs_path[1][0]])
                 book3 = phone.get_bid_book([bbs_path[2][0]])
