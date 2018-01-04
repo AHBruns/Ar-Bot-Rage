@@ -3,17 +3,16 @@ import Algorithms.pather as pather
 import Algorithms.evaluations as eval
 import HandOfGod.hand as hand
 import time
-import sys
 
 # start time check (used for later references)
 #    - only checked once
 start_time = time.time()
 print('\tstart time: ' + str(start_time))
 print('')
-print("\tsetting up trade scene. please don't touch anything. please.")
-print("\ttime: " + str(time.time()))
-print('')
-hand.setup_scene_1()
+# print("\tsetting up trade scene. please don't touch anything. please.")
+# print("\ttime: " + str(time.time()))
+# print('')
+# hand.setup_scene_1()
 
 completed_event_loop_count = 0
 while True:  # production loop
@@ -63,12 +62,15 @@ while True:  # production loop
                 print('-> https://www.coinexchange.io/market/' + bss_path[1][1] + '/' + bss_path[1][2] + ' ' + str(deep_eval_results[1][1]))
                 print('-> https://www.coinexchange.io/market/' + bss_path[2][1] + '/' + bss_path[2][2] + ' ' + str(deep_eval_results[1][2]))
                 print('')
-                if first_time:
-                    choice = input('Should I setup the trades? "y" or "n" ')
-                    if choice == "y":
-                        hand.url_1_input("https://www.coinexchange.io/market/" + bss_path[0][1] + '/' + bss_path[0][2])
-                        hand.url_2_input("https://www.coinexchange.io/market/" + bss_path[1][1] + '/' + bss_path[1][2])
-                        hand.url_3_input("https://www.coinexchange.io/market/" + bss_path[2][1] + '/' + bss_path[2][2])
+                # if first_time:
+                #     hand.url_1_input("https://www.coinexchange.io/market/" + bss_path[0][1] + '/' + bss_path[0][2])
+                #     hand.url_2_input("https://www.coinexchange.io/market/" + bss_path[1][1] + '/' + bss_path[1][2])
+                #     hand.url_3_input("https://www.coinexchange.io/market/" + bss_path[2][1] + '/' + bss_path[2][2])
+                    # choice = input('Should I setup the trades? "y" or "n" ')
+                    # if choice == "y":
+                    #     hand.url_1_input("https://www.coinexchange.io/market/" + bss_path[0][1] + '/' + bss_path[0][2])
+                    #     hand.url_2_input("https://www.coinexchange.io/market/" + bss_path[1][1] + '/' + bss_path[1][2])
+                    #     hand.url_3_input("https://www.coinexchange.io/market/" + bss_path[2][1] + '/' + bss_path[2][2])
                 first_time = False
                 book1 = phone.get_ask_book([bss_path[0][0]])
                 book2 = phone.get_bid_book([bss_path[1][0]])
@@ -99,12 +101,15 @@ while True:  # production loop
                 print('-> https://www.coinexchange.io/market/' + bbs_path[1][1] + '/' + bbs_path[1][2] + ' ' + str(deep_eval_results[1][1]))
                 print('-> https://www.coinexchange.io/market/' + bbs_path[2][1] + '/' + bbs_path[2][2] + ' ' + str(deep_eval_results[1][2]))
                 print('')
-                if first_time:
-                    choice = input('Should I setup the trades? "y" or "n" ')
-                    if choice == "y":
-                        hand.url_1_input("https://www.coinexchange.io/market/" + bbs_path[0][1] + '/' + bbs_path[0][2])
-                        hand.url_2_input("https://www.coinexchange.io/market/" + bbs_path[1][1] + '/' + bbs_path[1][2])
-                        hand.url_3_input("https://www.coinexchange.io/market/" + bbs_path[2][1] + '/' + bbs_path[2][2])
+                # if first_time:
+                #     hand.url_1_input("https://www.coinexchange.io/market/" + bbs_path[0][1] + '/' + bbs_path[0][2])
+                #     hand.url_2_input("https://www.coinexchange.io/market/" + bbs_path[1][1] + '/' + bbs_path[1][2])
+                #     hand.url_3_input("https://www.coinexchange.io/market/" + bbs_path[2][1] + '/' + bbs_path[2][2])
+                    # choice = input('Should I setup the trades? "y" or "n" ')
+                    # if choice == "y":
+                    #     hand.url_1_input("https://www.coinexchange.io/market/" + bbs_path[0][1] + '/' + bbs_path[0][2])
+                    #     hand.url_2_input("https://www.coinexchange.io/market/" + bbs_path[1][1] + '/' + bbs_path[1][2])
+                    #     hand.url_3_input("https://www.coinexchange.io/market/" + bbs_path[2][1] + '/' + bbs_path[2][2])
                 first_time = False
                 book1 = phone.get_ask_book([bbs_path[0][0]])
                 book2 = phone.get_ask_book([bbs_path[1][0]])
