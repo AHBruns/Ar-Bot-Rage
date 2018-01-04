@@ -4,6 +4,8 @@ Ar-Bot-Rage is a punny arbitrage script written entirely in Python 3. It is desi
 # Dependencies
 Ar-Bot-Rage tries to use as few third-party modules as possible. It's api calls use python's included requests module and it's timing systems use python's included time module. Finally, it also uses python's sys module for some file linking and exiting sequences. Note: because python's sys module is inherently system specific I can't guarantee this script will run on any systems other than OSX though I highly doubt you'll have any problems on other OSs.
 
+Finally, as I am currently trying to impliment an automated trading system using GUI automation the script will also require the PyAutoGUI module. PyAutoGUI is a third-party python module and can be installed using pip.
+
 # Roadmap
 Ar-Bot-Rage's core codebase is complete. It can form 3-market arbitrage paths and evaluate them both as buy -> sell -> sell (forwards) and buy -> buy -> sell (backwards). Additionally, it has a fairly easy to understand command line interface.
 
